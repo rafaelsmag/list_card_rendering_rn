@@ -20,11 +20,16 @@ class Home extends Component {
   render() {
     const { item } = this.state;
     return(
-      <SafeAreaView style={{ flex: 1 }}>
-        <Image blurRadius={20} source={{ uri: item.image }} style={StyleSheet.flatten([ StyleSheet.absoluteFill, styles.imageBackground])} />
-        <View style={styles.posterImageWrapper}>
-          <Image source={{ uri: item.image }} style={styles.posterImage}/>
-        </View>
+      <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
+          <Image blurRadius={10} source={{ uri: item.image }} style={StyleSheet.flatten([ StyleSheet.absoluteFill, styles.imageBackground])} />
+          <View style={styles.posterImageWrapper}>
+            <Image aspectRatio={0.674} source={{ uri: item.image }} style={styles.posterImage}/>
+          </View>
+          <View style={styles.wrapperContainerDetails}>
+            <View style={styles.containerDetails}>
+                <Text>{item.title}</Text>
+            </View> 
+          </View>
       </SafeAreaView>
     )
   }
@@ -32,22 +37,33 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   imageBackground: {
-    width: screen.width,
+    width: '100%',
   },
   posterImageWrapper: {
-    flex: 1,
-    flexDirection: 'column',
     alignItems: 'center',
-  },
-  posterImage: {
-    borderRadius: 10,
     height: POSTER_IMAGE_HEIGHT,
     width: POSTER_IMAGE_HEIGHT*0.674,
-    marginTop: SPACE_TERA,
-    marginHorizontal: SPACE_TERA,
-    resizeMode: Image.resizeMode.contain,
+    zIndex: 2,
     borderRadius: 10,
-    elevation: 2,    
+  },
+  posterImage: {
+    height: POSTER_IMAGE_HEIGHT,
+    borderRadius: 10,
+    zIndex: 2,
+  },
+  wrapperContainerDetails: {
+    flex: 1, 
+    flexDirection: 'row'
+  },
+  containerDetails: {
+    flex: 1,
+    backgroundColor: '#fff',
+    marginTop: -2*SPACE_TERA,
+    marginBottom: SPACE_TERA,
+    marginHorizontal: SPACE_TERA,
+    paddingTop: 2*SPACE_TERA + SPACE_MEGA,    
+    borderRadius: 10,
+    alignItems: 'center'
   }
 });
 
